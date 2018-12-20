@@ -44,6 +44,8 @@
       gulp-rev：为静态文件随机添加一串hash值
       gulp-rev-collector：根据rev生成的manifest.json文件中的映射, 去替换文件名称, 也可以替换路径
 9、gulp-sequence是用来顺序执行gulp中任务的插件，每个任务必须有return
-10、根据不同的项目进行修改gulpfiles中的命令。
+
+10、根据不同的项目进行修改gulpfiles中的命令。要结合src中文件的路径来写gulp命令中的路径。
+
 11、各项任务的含义：
 ①
