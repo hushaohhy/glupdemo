@@ -91,7 +91,7 @@ gulp.task("clean",function () {
 // 将所有的sass文件编译为css文件放在src/css文件中
 gulp.task("sass",function () {
     return (
-        gulp.src(_devroot + "**/*.scss")
+        gulp.src(_devroot + "{sass,libs}/*.scss")
             .pipe(sass())
             .pipe(gulp.dest(_devroot + "css"))
     )
@@ -139,8 +139,15 @@ gulp.task("minify_html",function () {
             .pipe(gulp.dest(__dirname + "/dist"))
     )
 })
+
+// 移动静态文件的任务
+gulp.task("move",function () {
+    gulp.src(_devroot + "libs/datatables/images/*")
+        .pipe(gulp.dest(__dirname + "/dist/libs/datatables/images"))
+})
+
 // 该任务功能是是执行 sass、imgmin、minify_html、rev、rev_html等任务，gulpSequence:[]中是并行任务，()中是顺序执行的任务
-gulp.task("start",gulpSequence("sass","minify_html","revimg","revcss","revjs","rev","autoprefixer"));
+gulp.task("start",gulpSequence("sass","minify_html","revimg","revcss","revjs","rev","autoprefixer","move","revimg"));
 // 执行该任务命令 gulp或者gulp default，任务名必须是default保证输入命令窗口输入gulp时可以执行命令，该任务功能是执行start任务
 gulp.task("default",["start"]);
 /* 执行该任务命令 gulp es6
